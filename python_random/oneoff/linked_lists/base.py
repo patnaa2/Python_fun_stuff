@@ -43,12 +43,22 @@ class LinkedList(object):
     def length(self):
         counter = 1
 
-        tmp = self.head
-        while tmp.next:
-            tmp = tmp.next
+        tail = self.head
+        while tail.next:
+            tail = tail.next
             counter += 1
 
         return counter
+    
+    def insert(self, val):
+        if not self.head:
+            self.head = Node(val)
+            return
+        tail = self.head
+        while tail.next:
+            tail = tail.next
+
+        tail.next = Node(val)
 
 
 class LinkedListHelper(object):
@@ -77,12 +87,9 @@ class LinkedListHelper(object):
                 else random_letter
 
         for _ in xrange(num):
-            head = LinkedList(Node(random_gen()))
-            tmp = head.head
+            linked_list = LinkedList(Node(random_gen()))
             for _ in xrange(length-1):
-                tmp.next = Node(random_gen())
-                tmp = tmp.next 
-
-            linked_lists.append(head)
+                linked_list.insert(random_gen())
+            linked_lists.append(linked_list)
     
         return linked_lists
