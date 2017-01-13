@@ -23,7 +23,7 @@ class Node(object):
         return self.val
 
 class LinkedList(object):
-    def __init__(self, head):
+    def __init__(self, head=None):
         self.head = head
 
     def __str__(self):
@@ -60,6 +60,19 @@ class LinkedList(object):
 
         tail.next = Node(val)
 
+    def reverse(self):
+        if not self.head:
+            return
+        
+        prev = None
+        cur = self.head
+        while cur is not None:
+            next_node = cur.next
+            cur.next = prev
+            prev = cur
+            cur = next_node
+        
+        self.head = prev
 
 class LinkedListHelper(object):
     VALID_VAL_TYPES = [str, int]
