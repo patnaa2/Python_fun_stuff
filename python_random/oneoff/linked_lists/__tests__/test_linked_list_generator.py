@@ -33,16 +33,14 @@ class LinkedListGenerator(unittest.TestCase):
     def test_remove_duplicates(self):
         linked_list = LinkedList()
         linked_list.insert(0)
-        linked_list.insert(1)
-        linked_list.insert(1)
-        linked_list.insert(2)
+        linked_list.insert(0)
 
         reversed_head = \
         LinkedListHelper.remove_duplicates_from_sorted_list(linked_list.head)
-
+        
+        import pdb ; pdb.set_trace()
         self.assertEqual(reversed_head.val, 0)
         self.assertEqual(reversed_head.next.val, 1)
-        self.assertEqual(reversed_head.next.next.val, 2)
 
 if __name__ == '__main__':
     unittest.main()

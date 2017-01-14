@@ -119,12 +119,9 @@ class LinkedListHelper(object):
         if not head:
             return None
         
-        slow = head
-        runner = head
-        while runner.next:
-            runner = runner.next
-            if runner.val != slow.val:
-                slow.next = runner
-                slow = slow.next
-
+        cur = head
+        while cur:
+            while cur.next and cur.next.val == cur.val:
+                cur.next = cur.next.next
+            cur = cur.next
         return head
