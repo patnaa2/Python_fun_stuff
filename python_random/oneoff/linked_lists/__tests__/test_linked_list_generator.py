@@ -21,14 +21,28 @@ class LinkedListGenerator(unittest.TestCase):
         linked_list.insert(1)
         linked_list.insert(2)
         
-        orig = deepcopy(orig)
+        orig = deepcopy(linked_list)
 
         linked_list.reverse()
 
         self.assertEqual(linked_list.length, 3)
-        self.assertEqual(linked_list.head, 2)
-        self.assertEqual(linked_list.head.next, 1)
-        self.assertEqual(linked_list.head.next.next, 0)
+        self.assertEqual(linked_list.head.val, 2)
+        self.assertEqual(linked_list.head.next.val, 1)
+        self.assertEqual(linked_list.head.next.next.val, 0)
+    
+    def test_remove_duplicates(self):
+        linked_list = LinkedList()
+        linked_list.insert(0)
+        linked_list.insert(1)
+        linked_list.insert(1)
+        linked_list.insert(2)
+
+        reversed_head = \
+        LinkedListHelper.remove_duplicates_from_sorted_list(linked_list.head)
+
+        self.assertEqual(reversed_head.val, 0)
+        self.assertEqual(reversed_head.next.val, 1)
+        self.assertEqual(reversed_head.next.next.val, 2)
 
 if __name__ == '__main__':
     unittest.main()

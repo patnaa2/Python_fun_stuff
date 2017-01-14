@@ -20,6 +20,8 @@ class Node(object):
         return self.val
 
     def __repr__(self):
+        if not isinstance(self.val, str):
+            return str(self.val)
         return self.val
 
 class LinkedList(object):
@@ -106,3 +108,23 @@ class LinkedListHelper(object):
             linked_lists.append(linked_list)
     
         return linked_lists
+
+    @classmethod
+    def remove_duplicates_from_sorted_list(cls, head):
+        '''
+            given a sorted linked_list, return a linked list
+            deleting all duplicates
+        '''
+        
+        if not head:
+            return None
+        
+        slow = head
+        runner = head
+        while runner.next:
+            runner = runner.next
+            if runner.val != slow.val:
+                slow.next = runner
+                slow = slow.next
+
+        return head
